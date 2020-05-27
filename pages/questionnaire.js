@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Router from "next/router";
+
 import AnswerOption from "../components/AnswerOptions";
 import Popup from "../components/Popup";
 import Question from "../components/Question";
@@ -24,12 +26,20 @@ function Questionnaire() {
   }, []);
 
   const handleAnswer = () => {
-    setQuestion(data[counter].question);
-    setCount(counter + 1);
+    if (counter == data.length) {
+      redirectToFinishPage();
+    } else {
+      setQuestion(data[counter].question);
+      setCount(counter + 1);
+    }
   };
 
   const handleReject = () => {
     togglePopup(!isPopupOn);
+  };
+
+  const redirectToFinishPage = () => {
+    Router.push("/finish");
   };
 
   return (
