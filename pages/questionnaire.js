@@ -43,10 +43,21 @@ function Questionnaire() {
   };
 
   return (
-    <div>
+    <div
+      className="container mx-auto banner"
+      style={{ backgroundImage: "url(" + "/ai-banner.jpg" + ")" }}
+    >
       {isLoading && <p>Loading data...</p>}
-      <h1 className="text-3xl">List of questions</h1>
-      <>
+      <style jsx>{`
+        .banner {
+          min-height: 100vh;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          position: relative;
+        }
+      `}</style>
+      <section className="max-w-3xl p-8 pt-32">
         <>
           {isPopupOn && (
             <Popup text={"bla"} closePopup={() => togglePopup(!isPopupOn)} />
@@ -55,7 +66,7 @@ function Questionnaire() {
           <Question content={question} />
           <AnswerOption onAnswer={handleAnswer} onReject={handleReject} />
         </>
-      </>
+      </section>
     </div>
   );
 }

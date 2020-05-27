@@ -2,17 +2,18 @@ import React from "react";
 
 export default function AnswerOption({ onAnswer, onReject }) {
   return (
-    <div className="inline-flex">
+    <div className="inline-flex space-x-10">
       <button
         onClick={() => onAnswer()}
-        className="g-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        className="bg-green-400 hover:bg-green-600 text-black text-lg py-2 px-6 rounded hover:border-transparent rounded"
       >
-        YES
+        Yes
       </button>
-      <button 
+      <button
         onClick={() => onReject()}
-        className="g-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-        Nope :|
+        className="bg-red-400 hover:bg-red-600 text-black text-lg py-2 px-6 rounded hover:border-transparent rounded"
+      >
+        No
       </button>
     </div>
   );
