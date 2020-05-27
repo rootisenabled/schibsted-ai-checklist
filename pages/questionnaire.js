@@ -1,20 +1,50 @@
 import React, { useState, useEffect } from "react";
+import AnswerOption from "../components/AnswerOptions";
+import Popup from "../components/Popup";
 import Question from "../components/Question";
-import useSWR from "swr";
+import QuestionCount from "../components/QuestionCount";
 
 function Questionnaire() {
-  const fetcher = (url) => fetch(url).then((r) => r.json());
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [isPopupOn, togglePopup] = useState(false);
 
-  const { data, error } = useSWR("/api/hello", fetcher);
+  // initial state
+  const [counter, setCount] = useState(1);
+  const [question, setQuestion] = useState("");
 
-  if (!data) return <div>loading...</div>;
+  useEffect(() => {
+    fetch("/api/questions")
+      .then((res) => res.json())
+      .then((response) => {
+        setData(response);
+        setQuestion(response[0].question);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleAnswer = () => {
+    setQuestion(data[counter].question);
+    setCount(counter + 1);
+  };
+
+  const handleReject = () => {
+    togglePopup(!isPopupOn);
+  };
+
   return (
     <div>
+      {isLoading && <p>Loading data...</p>}
       <h1 className="text-3xl">List of questions</h1>
       <>
-        {data.map((d, i) => (
-          <Question key={i} content={d.question} />
-        ))}
+        <>
+          {isPopupOn && (
+            <Popup text={"bla"} closePopup={() => togglePopup(!isPopupOn)} />
+          )}
+          <QuestionCount counter={counter} total={data.length} />
+          <Question content={question} />
+          <AnswerOption onAnswer={handleAnswer} onReject={handleReject} />
+        </>
       </>
     </div>
   );
