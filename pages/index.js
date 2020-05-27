@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -12,11 +12,15 @@ export default function Home() {
         <h1 className="title">
           Welcome to the future where AI rulezz the world!
         </h1>
+
+        <div>
+          <a href="/questionnaire" className="start-button">
+            Start check
+          </a>
+        </div>
       </main>
 
-      <footer>
-        Schibsted, 2020
-      </footer>
+      <footer>Schibsted, 2020</footer>
 
       <style jsx>{`
         .container {
@@ -164,5 +168,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
