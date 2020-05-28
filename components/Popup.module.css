@@ -24,4 +24,5 @@
   bottom: 25%;
   margin: auto;
   background: white;
+  min-height: 600px;
 }

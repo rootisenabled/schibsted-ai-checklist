@@ -14,6 +14,7 @@ function Questionnaire() {
   // initial state
   const [counter, setCount] = useState(1);
   const [question, setQuestion] = useState("");
+  const [popupContent, setPopup] = useState("");
 
   useEffect(() => {
     fetch("/api/questions")
@@ -21,6 +22,7 @@ function Questionnaire() {
       .then((response) => {
         setData(response);
         setQuestion(response[0].question);
+        setPopup(response[0].moreInfo);
         setLoading(false);
       });
   }, []);
@@ -30,6 +32,7 @@ function Questionnaire() {
       redirectToFinishPage();
     } else {
       setQuestion(data[counter].question);
+      setPopup(data[counter].moreInfo);
       setCount(counter + 1);
     }
   };
@@ -60,7 +63,10 @@ function Questionnaire() {
       <section className="max-w-3xl p-8 pt-32">
         <>
           {isPopupOn && (
-            <Popup text={"bla"} closePopup={() => togglePopup(!isPopupOn)} />
+            <Popup
+              text={popupContent}
+              closePopup={() => togglePopup(!isPopupOn)}
+            />
           )}
           <QuestionCount counter={counter} total={data.length} />
           <Question content={question} />
