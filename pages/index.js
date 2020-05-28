@@ -22,7 +22,7 @@ export default function Home() {
             self-assessment you and your team will get to explore various topics
             related to responsible AI, including:
           </p>
-          <ul className="max-w-md space-y-6 pl-10 font-medium font-sans text-gray-900 text-center">
+          <ul className="max-w-md mx-auto space-y-6 pl-10 font-medium font-sans text-gray-900 text-center">
             <li className="rounded-md border border-red-600 py-4">Team diversity</li>
             <li className="rounded-md border border-red-600 py-4">Data representation & algorithmic bias</li>
             <li className="rounded-md border border-red-600 py-4">Threat identification</li>
