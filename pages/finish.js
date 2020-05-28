@@ -13,7 +13,9 @@ export default function FinishPage() {
         className="container mx-auto banner"
         style={{ backgroundImage: "url(" + "/final.svg" + ")" }}
       ></div>
-      <a href="/">Retake the test</a>
+      <div className="my-10 uppercase text-center max-w-xl mx-auto py-2 px-4 rounded bg-green-400 hover:bg-green-700 text-grey-400 font-medium">
+        <a href="/">Retake the test</a>
+      </div>
     </>
   );
 }
